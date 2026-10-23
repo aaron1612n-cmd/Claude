@@ -241,7 +241,8 @@
     state.lastText = lines.join("\n");
 
     ctx.globalCompositeOperation = "source-over";
-    ctx.fillStyle = ink.bg; ctx.fillRect(0, 0, W, H);
+    // colour mode needs a transparent ground so only the glyphs take the tint
+    if (ink.fg) { ctx.fillStyle = ink.bg; ctx.fillRect(0, 0, W, H); } else ctx.clearRect(0, 0, W, H);
     ctx.font = `500 ${fontPx}px "DM Mono", ui-monospace, monospace`;
     ctx.textBaseline = "middle";
     ctx.fillStyle = ink.fg || "#fff";
