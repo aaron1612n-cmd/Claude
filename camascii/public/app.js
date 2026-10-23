@@ -38,6 +38,7 @@
     live: false,
     stream: null,
     facing: "user",
+    torch: false,
     shots: [],
     viewing: -1,
     lastText: "",
@@ -68,6 +69,8 @@
     $("invert").setAttribute("aria-pressed", state.invert);
     $("mirror").setAttribute("aria-pressed", state.mirror);
     $("freeze").setAttribute("aria-pressed", state.hold);
+    $("torch").setAttribute("aria-pressed", !!state.torch); $("torchM").setAttribute("aria-pressed", !!state.torch);
+    $("torch").disabled = $("torchM").disabled = !state.live;
     $("rampCycle").textContent = RAMPS[state.ramp].chars.trim().slice(-2);
     const live = state.live;
     $("shutter").disabled = !live; $("shutterM").disabled = !live;
@@ -129,6 +132,7 @@
     else if (k === "v") $("invert").click();
     else if (k === "m") $("mirror").click();
     else if (k === "f") $("freeze").click();
+    else if (k === "l") toggleTorch();
   });
 
   // ---------- camera ----------
@@ -150,6 +154,7 @@
         cameras = (await navigator.mediaDevices.enumerateDevices()).filter((d) => d.kind === "videoinput").length;
       } catch (e) {}
       $("flip").hidden = $("flipM").hidden = cameras < 2;
+      if (state.torch && !(await applyTorch(true))) state.torch = false;
       syncUI();
     } catch (err) {
       msg.textContent = err && err.name === "NotAllowedError"
@@ -161,6 +166,43 @@
   $("open").onclick = start;
   const flip = () => { state.facing = state.facing === "user" ? "environment" : "user"; state.mirror = state.facing === "user"; start(); };
   $("flip").onclick = flip; $("flipM").onclick = flip;
+
+  // ---------- flashlight ----------
+  async function applyTorch(on) {
+    const track = state.stream && state.stream.getVideoTracks()[0];
+    if (!track) return false;
+    // some phones only report torch once frames are flowing
+    for (let i = 0; i < 5; i++) {
+      const caps = track.getCapabilities ? track.getCapabilities() : {};
+      if (caps.torch) {
+        try { await track.applyConstraints({ advanced: [{ torch: on }] }); return true; } catch (e) { return false; }
+      }
+      await new Promise((r) => setTimeout(r, 150));
+    }
+    return false;
+  }
+  let noteTimer = 0;
+  function note(text) {
+    const el = $("edgeTL");
+    el.textContent = text; el.classList.add("warn");
+    clearTimeout(noteTimer);
+    noteTimer = setTimeout(() => { el.textContent = "camascii"; el.classList.remove("warn"); }, 2200);
+  }
+  async function toggleTorch() {
+    if (!state.live) return;
+    const on = !state.torch;
+    if (on && state.facing === "user" && cameras > 1) {
+      // the flash sits beside the rear lens
+      state.facing = "environment"; state.mirror = false; state.torch = true;
+      await start();
+      if (!state.torch) note("no flashlight");
+      return;
+    }
+    if (await applyTorch(on)) state.torch = on;
+    else { state.torch = false; if (on) note("no flashlight"); }
+    syncUI();
+  }
+  $("torch").onclick = toggleTorch; $("torchM").onclick = toggleTorch;
 
   // ---------- render ----------
   let W = 0, H = 0, dpr = 1, cols = 0, rows = 0, cellW = 0, cellH = 0, fontPx = 0, glyphW = 0.6;

@@ -6,7 +6,8 @@ Live: https://camascii.avadlabs.workers.dev
 
 - Four character ramps, three inks (paper, safelight, colour), contrast, exposure, invert, mirror
 - Expose frames onto a contact sheet, save as PNG or .txt, or copy the text
-- Keyboard: space expose, `[` `]` grain, R ramp, I ink, V invert, M mirror, F hold. Wheel or pinch on the finder changes grain.
+- Flashlight: turns on the phone torch (switches to the rear camera first). Works where the browser exposes torch control, mainly Chrome on Android.
+- Keyboard: space expose, `[` `]` grain, R ramp, I ink, V invert, M mirror, F hold, L flashlight. Wheel or pinch on the finder changes grain.
 
 ## Deploy
 

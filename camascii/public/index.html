@@ -72,6 +72,10 @@
   .edge.bl { bottom: 10px; left: 12px; }
   .edge.br { bottom: 10px; right: 12px; }
   .edge .rec { color: var(--safelight); }
+  .edge.warn { background: var(--safelight); color: var(--paper); }
+  .seg button:disabled { opacity: .45; cursor: default; }
+  .seg #torch[aria-pressed="true"] { background: var(--safelight); border-color: var(--safelight); color: var(--paper); }
+  .torch-m { display: none; }
 
   .gate {
     position: absolute; inset: 0; z-index: 3;
@@ -252,6 +256,14 @@
     .ledger { display: contents; }
     .mast { order: -1; border: 0; padding: 0; grid-row: 1; border-top: 2px solid var(--ink); padding-top: 6px; }
     .mast h1 { font-size: 34px; }
+    .mast { align-items: center; }
+    .mast .no { margin-left: auto; margin-right: 12px; }
+    .torch-m {
+      display: grid; place-items: center; width: 44px; height: 44px; padding: 0;
+      border: 1px solid var(--ink); background: transparent;
+    }
+    .torch-m[aria-pressed="true"] { background: var(--safelight); border-color: var(--safelight); color: var(--paper); }
+    .torch-m:disabled { opacity: .35; }
     .finder { grid-row: 2; }
     .controls {
       position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
@@ -320,6 +332,9 @@
     <header class="mast">
       <h1>camascii</h1>
       <span class="no" id="frameNo">No. 000</span>
+      <button class="torch-m" id="torchM" type="button" aria-label="Flashlight" aria-pressed="false" disabled>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M11.5 1.5 4 11h5l-1 7.5L16 9h-5z"/></svg>
+      </button>
     </header>
 
     <div class="controls" id="controls">
@@ -350,6 +365,7 @@
             <div class="seg"><button type="button" id="invert" aria-pressed="false">invert<kbd>V</kbd></button></div>
             <div class="seg"><button type="button" id="mirror" aria-pressed="true">mirror<kbd>M</kbd></button></div>
             <div class="seg"><button type="button" id="flip" hidden>flip lens</button></div>
+            <div class="seg"><button type="button" id="torch" aria-pressed="false" disabled>flashlight<kbd>L</kbd></button></div>
           </div>
         </li>
       </ul>
