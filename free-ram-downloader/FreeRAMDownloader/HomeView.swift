@@ -170,7 +170,7 @@ struct HomeView: View {
         }
     }
 
-    /// The classic wall of fake download buttons. Every one of them is an ad.
+    /// The classic wall of download buttons. Every one of them is an ad.
     private var decoyAds: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text("Advertisement")
@@ -248,7 +248,7 @@ struct HomeView: View {
             HitCounter(value: 1_000_000)
             Text("Best viewed in Netscape Navigator 4.0 at 800x600")
                 .font(Scam.times(12, italic: true)).foregroundColor(.white)
-            Text("(c) 1999-2003 FreeRAM Inc. All rights reserved.\nTHIS APP IS A JOKE. No RAM is downloaded. It is physically impossible.")
+            Text("(c) 1999-2003 FreeRAM Inc. All rights reserved.")
                 .font(Scam.times(11))
                 .foregroundColor(Scam.silver)
                 .multilineTextAlignment(.center)
@@ -262,7 +262,7 @@ struct HomeView: View {
     private func spawnPopup() {
         guard popups.count < 4, let s = PopupScript.all.randomElement() else { return }
         popups.append(FakePopup(title: s.title, message: s.message,
-                                dx: Double.random(in: -40...40),
+                                dx: Double.random(in: -10...10),
                                 dy: Double.random(in: -140...100)))
     }
 

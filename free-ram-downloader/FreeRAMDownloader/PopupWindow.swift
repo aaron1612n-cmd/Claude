@@ -28,7 +28,7 @@ struct PopupWindow: View {
             }
             .padding(.top, 6)
         }
-        .frame(width: 290)
+        .frame(width: 280)
         .shadow(color: .black, radius: 0, x: 4, y: 4)
     }
 }

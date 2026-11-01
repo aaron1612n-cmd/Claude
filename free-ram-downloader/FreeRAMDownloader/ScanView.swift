@@ -5,16 +5,16 @@ struct ScanView: View {
 
     private let threats = [
         "Trojan.Horse.Of.Troy",
-        "Win32.Definitely.Not.Fake",
+        "Win32.Memory.Leech",
         "Cookie.Monster.exe",
         "Your.Ex.Texts.dll",
         "Mom.Found.Your.Browser.History",
         "Clippy.Wants.To.Talk",
-        "Totally.Real.Virus.vbs"
+        "Worm.Gigabyte.Eater.vbs"
     ]
     private let paths = [
         "C:\\WINDOWS\\SYSTEM32\\RAM.DLL",
-        "C:\\Program Files\\Totally Legit\\setup.exe",
+        "C:\\Program Files\\Setup Files\\setup.exe",
         "C:\\My Documents\\homework (2).doc",
         "C:\\WINDOWS\\Temp\\~DF0A2B.tmp",
         "C:\\Games\\Minesweeper\\mines.exe",
@@ -24,7 +24,7 @@ struct ScanView: View {
     @State private var found = 0
     @State private var progress = 0.0
     @State private var finished = false
-    @State private var showJoke = false
+    @State private var showRemoved = false
 
     private let ticker = Timer.publish(every: 0.05, on: .main, in: .common).autoconnect()
 
@@ -52,7 +52,7 @@ struct ScanView: View {
 
                         if finished {
                             BlinkText(text: "\(threats.count) THREATS FOUND!!!", size: 22)
-                            Button { showJoke = true } label: {
+                            Button { showRemoved = true } label: {
                                 Text("REMOVE ALL (FREE!)").font(Scam.arial(18)).foregroundColor(.black).frame(maxWidth: .infinity)
                             }
                             .buttonStyle(Win98ButtonStyle(fill: Scam.lime))
@@ -71,10 +71,10 @@ struct ScanView: View {
             found = min(threats.count, Int(progress * Double(threats.count + 1)))
             if progress >= 1 { found = threats.count; finished = true }
         }
-        .alert("Just kidding!", isPresented: $showJoke) {
+        .alert("Threats removed!", isPresented: $showRemoved) {
             Button("Phew", role: .cancel) { dismiss() }
         } message: {
-            Text("Nothing was scanned. There are no viruses. Your phone is fine. Go touch grass.")
+            Text("All 7 threats were removed. Your phone is now 100% protected. Please restart it 7 times.")
         }
     }
 }

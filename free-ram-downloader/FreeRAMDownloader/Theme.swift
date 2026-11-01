@@ -176,18 +176,23 @@ struct Marquee: View {
             })
     }
 
+    // The scrolling copies live in an overlay so their (wide) natural size can never
+    // push the page wider than the screen.
     var body: some View {
-        TimelineView(.animation) { tl in
-            let t = tl.date.timeIntervalSinceReferenceDate
-            let x = -CGFloat(t * 80).truncatingRemainder(dividingBy: textWidth)
-            HStack(spacing: 0) { label; label; label; label }
-                .offset(x: x)
-                .frame(maxWidth: .infinity, alignment: .leading)
-        }
-        .frame(height: 26)
-        .clipped()
-        .background(Scam.yellow)
-        .border(Color.black, width: 2)
+        Color.clear
+            .frame(maxWidth: .infinity)
+            .frame(height: 26)
+            .overlay(alignment: .leading) {
+                TimelineView(.animation) { tl in
+                    let t = tl.date.timeIntervalSinceReferenceDate
+                    let x = -CGFloat(t * 80).truncatingRemainder(dividingBy: textWidth)
+                    HStack(spacing: 0) { label; label; label; label }
+                        .offset(x: x)
+                }
+            }
+            .clipped()
+            .background(Scam.yellow)
+            .border(Color.black, width: 2)
     }
 }
 
@@ -203,6 +208,8 @@ struct BlinkText: View {
                 .font(Scam.arial(size))
                 .foregroundColor(on ? a : b)
                 .shadow(color: .black, radius: 0, x: 1, y: 1)
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
         }
     }
 }

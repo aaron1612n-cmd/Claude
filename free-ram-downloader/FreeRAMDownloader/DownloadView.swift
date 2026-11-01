@@ -96,7 +96,7 @@ struct DownloadView: View {
                 }
                 .buttonStyle(Win98ButtonStyle())
             }
-            Text("Your answers are not recorded. Nothing is.")
+            Text("Surveys take only 3 seconds*")
                 .font(Scam.times(11, italic: true)).foregroundColor(Scam.dkGray)
         }
     }
@@ -107,8 +107,6 @@ struct DownloadView: View {
             Text("Share with 20 friends to unlock your RAM.").font(Scam.times(16)).foregroundColor(.black)
             BlockBar(value: Double(shared) / 20.0)
             Text("Shared: \(shared)/20").font(Scam.courier(15)).foregroundColor(.black)
-            Text("(we made up your friends for you)")
-                .font(Scam.times(12, italic: true)).foregroundColor(Scam.dkGray)
         }
     }
 
@@ -118,17 +116,17 @@ struct DownloadView: View {
             BlockBar(value: 1.0)
             Sunken(fill: Scam.cream) {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("RAM added:    +0.00 GB").font(Scam.courier(14)).foregroundColor(.black)
-                    Text("Total RAM:    unchanged").font(Scam.courier(14)).foregroundColor(.black)
+                    Text("RAM added:    +\(pack.label)").font(Scam.courier(14)).foregroundColor(.black)
+                    Text("Total RAM:    4 GB + \(pack.label)").font(Scam.courier(14)).foregroundColor(.black)
                     Text("Viruses:      0").font(Scam.courier(14)).foregroundColor(.black)
                 }
             }
             HazardStripe()
-            Text("APRIL FOOLS!")
+            Text("CONGRATULATIONS!")
                 .font(Scam.times(26, bold: true, italic: true))
                 .foregroundColor(Scam.red)
                 .shadow(color: .black, radius: 0, x: 2, y: 2)
-            Text("You cannot download RAM. This app is a joke and your phone is perfectly fine. Nothing was downloaded, collected or sent anywhere.")
+            Text("Your new RAM is installed. Please restart your phone 7 times to apply it. Thank you for using FREE RAM DOWNLOADER!")
                 .font(Scam.times(15)).foregroundColor(.black)
             HStack(spacing: 8) {
                 Button { reset() } label: {
