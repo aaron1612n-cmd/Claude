@@ -1,6 +1,6 @@
 name: FreeRAMDownloader
 options:
-  bundleIdPrefix: lol.fakeram
+  bundleIdPrefix: com.freeramdownloader
   deploymentTarget:
     iOS: "16.0"
 targets:
@@ -11,7 +11,7 @@ targets:
       - FreeRAMDownloader
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: lol.fakeram.FreeRAMDownloader
+        PRODUCT_BUNDLE_IDENTIFIER: com.freeramdownloader.app
         MARKETING_VERSION: "9.9.9"
         CURRENT_PROJECT_VERSION: "999"
         SWIFT_VERSION: "5.0"

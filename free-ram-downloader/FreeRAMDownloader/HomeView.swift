@@ -4,7 +4,7 @@ struct HomeView: View {
     @State private var selected = 1
     @State private var activePack: RamPack?
     @State private var showScan = false
-    @State private var popups: [FakePopup] = []
+    @State private var popups: [PopupItem] = []
     @State private var firstPopupScheduled = false
 
     var body: some View {
@@ -261,12 +261,12 @@ struct HomeView: View {
 
     private func spawnPopup() {
         guard popups.count < 4, let s = PopupScript.all.randomElement() else { return }
-        popups.append(FakePopup(title: s.title, message: s.message,
+        popups.append(PopupItem(title: s.title, message: s.message,
                                 dx: Double.random(in: -10...10),
                                 dy: Double.random(in: -140...100)))
     }
 
-    private func closePopup(_ p: FakePopup) {
+    private func closePopup(_ p: PopupItem) {
         popups.removeAll { $0.id == p.id }
         if Int.random(in: 0..<3) == 0 {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) { spawnPopup() }

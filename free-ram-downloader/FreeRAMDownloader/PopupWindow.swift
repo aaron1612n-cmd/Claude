@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct PopupWindow: View {
-    let popup: FakePopup
+    let popup: PopupItem
     let onClose: () -> Void
 
     var body: some View {

@@ -1,7 +1,7 @@
 # FREE RAM DOWNLOADER 9.9.9 ULTRA PRO
 
-A joke iOS app that looks like a 2003 scam download site. It "downloads" free RAM.
-**Nothing is downloaded, collected or sent anywhere. It is a joke. RAM cannot be downloaded.**
+An iOS app styled like a 2003 download site. It "downloads" free RAM.
+Nothing is collected or sent anywhere.
 
 | icon | home | "download" |
 |---|---|---|
@@ -10,10 +10,10 @@ A joke iOS app that looks like a 2003 scam download site. It "downloads" free RA
 ## What's in it
 - Flat Windows 98 look: 16-colour palette, bevels, no rounded corners, no gradients, tiled background
 - Scrolling marquee, "visitor number 1,000,000", hit counter, hazard stripes, "under construction", "best viewed in Netscape"
-- Fake download that crawls to 99%, hits `ERROR 0x00000RAM`, demands 3 surveys, then "shares with 20 friends" (made up for you)
-- Fake virus scan that finds 7 "threats" (Cookie.Monster.exe, ...)
-- Popup windows that spawn more popups, decoy ad buttons, fake testimonials, fake trust badges
-- Ends with the reveal: `RAM added: +0.00 GB`
+- A download that crawls to 99%, hits `ERROR 0x00000RAM`, demands 3 surveys, then "shares with 20 friends"
+- A virus scan that finds 7 "threats" (Cookie.Monster.exe, ...)
+- Popup windows that spawn more popups, decoy ad buttons, testimonials, trust badges
+- Ends with `RAM added: +32 GB`, restart your phone 7 times
 
 ## Get the .ipa
 `.ipa` files can only be built on macOS with Xcode, so this repo builds one in CI:

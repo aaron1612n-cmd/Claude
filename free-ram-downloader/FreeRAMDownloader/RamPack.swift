@@ -28,7 +28,7 @@ struct PopupScript {
     ]
 }
 
-struct FakePopup: Identifiable {
+struct PopupItem: Identifiable {
     let id = UUID()
     let title: String
     let message: String
