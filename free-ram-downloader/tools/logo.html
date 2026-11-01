@@ -1,0 +1,85 @@
+<!doctype html>
+<meta charset="utf-8">
+<!-- Designed at 256x256, then crunched to the 16-colour Windows palette and upscaled 4x (see pixelate.py).
+     No rounded corners, no smooth gradients, no glow: it is meant to look like a 2003 shareware GIF. -->
+<style>
+  html, body { margin: 0; background: #000; }
+  svg { display: block; shape-rendering: crispEdges; }
+  .serif { font-family: "Liberation Serif", "Times New Roman", serif; font-weight: bold; font-style: italic; }
+  .sans  { font-family: "Liberation Sans", Arial, sans-serif; font-weight: bold; }
+</style>
+<svg id="logo" xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <pattern id="tile" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#000080"/><rect width="4" height="4" fill="#0000ff"/><rect x="4" y="4" width="4" height="4" fill="#0000ff"/>
+    </pattern>
+    <pattern id="hazard" width="16" height="12" patternUnits="userSpaceOnUse" patternTransform="skewX(-45)">
+      <rect width="16" height="12" fill="#ffff00"/><rect width="8" height="12" fill="#000"/>
+    </pattern>
+    <linearGradient id="title" x1="0" x2="1"><stop offset="0" stop-color="#000080"/><stop offset="1" stop-color="#000080"/></linearGradient>
+  </defs>
+
+  <rect width="256" height="256" fill="url(#tile)"/>
+
+  <!-- window frame -->
+  <rect x="8" y="8" width="240" height="240" fill="#000"/>
+  <rect x="8" y="8" width="238" height="238" fill="#fff"/>
+  <rect x="10" y="10" width="236" height="236" fill="#808080"/>
+  <rect x="10" y="10" width="234" height="234" fill="#c0c0c0"/>
+
+  <!-- title bar -->
+  <rect x="13" y="13" width="230" height="20" fill="url(#title)"/>
+  <text class="sans" x="18" y="28" font-size="14" fill="#fff">FREE_RAM.EXE</text>
+  <rect x="226" y="16" width="14" height="14" fill="#c0c0c0"/>
+  <rect x="226" y="16" width="14" height="1" fill="#fff"/><rect x="226" y="16" width="1" height="14" fill="#fff"/>
+  <rect x="226" y="29" width="14" height="1" fill="#000"/><rect x="239" y="16" width="1" height="14" fill="#000"/>
+  <path d="M230 20 L236 26 M236 20 L230 26" stroke="#000" stroke-width="2"/>
+
+  <!-- hazard stripe -->
+  <rect x="13" y="38" width="230" height="10" fill="url(#hazard)"/>
+  <rect x="13" y="38" width="230" height="10" fill="none" stroke="#000" stroke-width="1"/>
+
+  <!-- sunken white panel with WordArt -->
+  <rect x="15" y="53" width="226" height="72" fill="#808080"/>
+  <rect x="16" y="54" width="225" height="71" fill="#fff"/>
+  <rect x="16" y="54" width="225" height="2" fill="#404040"/>
+  <text class="serif" x="131" y="102" font-size="39" text-anchor="middle" fill="#000" stroke="#000" stroke-width="2">FREE RAM</text>
+  <text class="serif" x="128" y="99" font-size="39" text-anchor="middle" fill="#ff0000" stroke="#800000" stroke-width="1">FREE RAM</text>
+  <text class="sans" x="128" y="118" font-size="12" text-anchor="middle" fill="#0000ff" text-decoration="underline">DOWNLOADER 9.9 - 100% SAFE</text>
+    <!-- NEW! sticker -->
+  <rect x="198" y="58" width="40" height="16" fill="#ff0000" stroke="#000" stroke-width="1"/>
+  <text class="sans" x="218" y="71" font-size="12" text-anchor="middle" fill="#ffff00">NEW!</text>
+
+  <!-- RAM stick: flat, boxy -->
+  <rect x="16" y="131" width="224" height="46" fill="#000"/>
+  <rect x="17" y="132" width="222" height="44" fill="#008000"/>
+  <rect x="17" y="132" width="222" height="3" fill="#00ff00"/>
+  <g fill="#000">
+    <rect x="28" y="140" width="24" height="22"/><rect x="60" y="140" width="24" height="22"/><rect x="92" y="140" width="24" height="22"/>
+    <rect x="140" y="140" width="24" height="22"/><rect x="172" y="140" width="24" height="22"/><rect x="204" y="140" width="24" height="22"/>
+  </g>
+  <g fill="#ffff00" id="pins"></g>
+  <rect x="122" y="168" width="12" height="8" fill="#c0c0c0"/>
+
+  <!-- progress bar stuck at 99% -->
+  <rect x="16" y="183" width="224" height="16" fill="#808080"/>
+  <rect x="17" y="184" width="223" height="15" fill="#fff"/>
+  <g fill="#000080" id="blocks"></g>
+  
+  <!-- gray bevel button -->
+  <rect x="38" y="206" width="180" height="34" fill="#000"/>
+  <rect x="38" y="206" width="179" height="33" fill="#fff"/>
+  <rect x="40" y="208" width="177" height="31" fill="#808080"/>
+  <rect x="40" y="208" width="175" height="29" fill="#c0c0c0"/>
+  <text class="sans" x="124" y="231" font-size="21" text-anchor="middle" fill="#000">DOWNLOAD</text>
+  <!-- cursor -->
+  <path d="M196 214 v22 l5 -5 l4 9 l4 -2 l-4 -9 h8 z" fill="#fff" stroke="#000" stroke-width="1.5"/>
+</svg>
+<script>
+  const NS = "http://www.w3.org/2000/svg";
+  const add = (parent, tag, attrs) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); };
+  const pins = document.getElementById("pins");
+  for (let i = 0; i < 26; i++) { const x = 21 + i * 8.5; if (x > 112 && x < 140) continue; add(pins, "rect", { x, y: 167, width: 5, height: 9 }); }
+  const blocks = document.getElementById("blocks");
+  for (let i = 0; i < 22; i++) add(blocks, "rect", { x: 20 + i * 9.6, y: 187, width: 7, height: 9 });
+</script>

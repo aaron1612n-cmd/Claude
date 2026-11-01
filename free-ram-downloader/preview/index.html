@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FREE RAM DOWNLOADER 9.9.9 - web preview</title>
+<style>
+  /* Palette: the 16 Windows colours. No gradients, no radius, no glow. */
+  :root{
+    --silver:#c0c0c0; --dk:#404040; --navy:#000080; --blue:#0000ff; --red:#ff0000; --maroon:#800000;
+    --yellow:#ffff00; --green:#008000; --lime:#00ff00; --cream:#ffffcc;
+  }
+  *{box-sizing:border-box; border-radius:0}
+  html{ -webkit-text-size-adjust:100% }
+  body{
+    margin:0; min-height:100vh; color:#000;
+    font:16px/1.25 "Times New Roman","Liberation Serif",Times,serif;
+    background-color:var(--navy);
+    background-image:
+      linear-gradient(45deg,var(--blue) 25%,transparent 25%,transparent 75%,var(--blue) 75%),
+      linear-gradient(45deg,var(--blue) 25%,transparent 25%,transparent 75%,var(--blue) 75%);
+    background-size:16px 16px; background-position:0 0,8px 8px;
+  }
+  .page{max-width:560px; margin:0 auto; padding:8px 8px 40px}
+  .sans{font-family:Arial,"Liberation Sans",Helvetica,sans-serif; font-weight:bold}
+  .raised{background:var(--silver); border:2px solid; border-color:#fff var(--dk) var(--dk) #fff; outline:1px solid #000}
+  .sunken{background:#fff; border:2px solid; border-color:var(--dk) #fff #fff var(--dk); outline:1px solid #000; padding:8px}
+  .marquee{background:var(--yellow); border:2px solid #000; overflow:hidden; white-space:nowrap; height:26px}
+  .marquee span{display:inline-block; padding-left:100%; color:var(--red); font:bold 15px/22px Arial,"Liberation Sans",sans-serif;
+    animation:scroll 14s linear infinite}
+  @keyframes scroll{to{transform:translateX(-100%)}}
+  .win{margin-top:10px}
+  .title{background:var(--navy); color:#fff; margin:3px; padding:3px 4px; display:flex; justify-content:space-between; align-items:center; font:bold 13px Arial,"Liberation Sans",sans-serif}
+  .x{width:20px; height:18px; background:var(--silver); color:#000; border:2px solid; border-color:#fff var(--dk) var(--dk) #fff; font:bold 11px Arial,"Liberation Sans",sans-serif; padding:0; cursor:pointer}
+  .body{padding:4px 8px 10px; display:grid; gap:12px}
+  .head{display:flex; gap:10px; align-items:center}
+  .head img{width:96px; height:96px; border:2px solid #000; image-rendering:pixelated; flex:none}
+  .wordart{font:italic bold 38px/1 "Times New Roman","Liberation Serif",serif; color:var(--red); text-shadow:2px 2px 0 #000}
+  .dl{font:bold 22px "Times New Roman","Liberation Serif",serif; color:var(--blue); text-decoration:underline}
+  .ver{font-style:italic; font-size:13px}
+  .hazard{height:12px; border:1px solid #000; background:repeating-linear-gradient(135deg,var(--yellow) 0 10px,#000 10px 20px)}
+  .blink{font:bold 17px Arial,"Liberation Sans",sans-serif; animation:blink 1s steps(1) infinite; text-shadow:1px 1px 0 #000}
+  @keyframes blink{0%{color:var(--red)}50%{color:var(--yellow)}}
+  .row{display:flex; justify-content:space-between; font-size:15px}
+  .bar{display:flex; gap:2px; padding:4px; height:28px; background:#fff; border:2px solid; border-color:var(--dk) #fff #fff var(--dk); outline:1px solid #000}
+  .bar i{flex:1; background:transparent} .bar i.on{background:var(--navy)}
+  h2{margin:0; font-size:18px; color:var(--navy)}
+  .pack{display:flex; align-items:center; gap:10px; padding:2px 0; background:none; border:0; font:inherit; text-align:left; cursor:pointer; width:100%}
+  .box{width:20px; height:20px; background:#fff; border:2px solid; border-color:var(--dk) #fff #fff var(--dk); outline:1px solid #000; font:bold 14px/16px "Courier New","Liberation Mono",monospace; text-align:center}
+  .pack b{font-size:17px} .pack em{font-style:normal; color:var(--red); font-size:14px}
+  .btn{display:block; width:100%; background:var(--silver); color:#000; border:2px solid; border-color:#fff var(--dk) var(--dk) #fff; outline:1px solid #000;
+    font:bold 16px Arial,"Liberation Sans",sans-serif; padding:9px 14px; cursor:pointer; touch-action:manipulation}
+  .btn:active{border-color:var(--dk) #fff #fff var(--dk); transform:translate(1px,1px)}
+  .btn.big{font-size:22px; padding:12px 14px}
+  .btn.lime{background:var(--lime)} .btn.yel{background:var(--yellow)} .btn.grn{background:var(--green)}
+  a.link,button.link{color:var(--blue); text-decoration:underline; background:none; border:0; padding:0; font:inherit; cursor:pointer; text-align:left}
+  .ads{display:grid; grid-template-columns:repeat(3,1fr); gap:6px}
+  .ads .btn{font-size:12px; min-height:40px; padding:4px; text-align:center}
+  small.ad{font:9px Arial,"Liberation Sans",sans-serif; color:var(--dk)}
+  .q{font-style:italic; font-size:14px} .who{display:flex; justify-content:space-between; font-size:12px; color:var(--dk); font-weight:bold}
+  .who span:last-child{font-family:"Courier New","Liberation Mono",monospace; color:var(--maroon); font-size:14px}
+  .badges{display:grid; grid-template-columns:repeat(4,1fr); gap:6px}
+  .badges div{border:2px solid #000; min-height:42px; display:grid; place-items:center; text-align:center; font:bold 11px/1.15 Arial,"Liberation Sans",sans-serif}
+  .foot{color:#fff; text-align:center; display:grid; gap:8px; padding-top:10px; justify-items:center}
+  .foot .fine{color:var(--silver); font-size:11px}
+  .count{display:flex; gap:2px} .count b{background:#000; color:var(--lime); width:18px; height:26px; font:bold 18px/26px "Courier New","Liberation Mono",monospace; border:1px solid var(--dk)}
+  .mono{font:bold 13px "Courier New","Liberation Mono",monospace}
+  .hide{display:none!important}
+  /* popups */
+  .pop{position:fixed; left:50%; top:50%; width:290px; max-width:calc(100vw - 16px); box-shadow:4px 4px 0 #000; z-index:10}
+  .pop .msg{display:flex; gap:10px; font-size:15px}
+  .pop .bang{flex:none; width:34px; height:34px; background:var(--yellow); border:2px solid #000; text-align:center; font:bold 26px/30px "Times New Roman","Liberation Serif",serif; color:var(--navy)}
+  .pop .btns{display:flex; gap:10px; justify-content:center; margin-top:12px} .pop .btns .btn{width:70px; padding:6px}
+  .overlay{position:fixed; inset:0; background:var(--navy); overflow:auto; z-index:5; padding:48px 8px 40px;
+    background-image:linear-gradient(45deg,var(--blue) 25%,transparent 25%,transparent 75%,var(--blue) 75%),linear-gradient(45deg,var(--blue) 25%,transparent 25%,transparent 75%,var(--blue) 75%); background-size:16px 16px; background-position:0 0,8px 8px}
+  .overlay .inner{max-width:560px; margin:0 auto}
+  .april{font:italic bold 26px "Times New Roman","Liberation Serif",serif; color:var(--red); text-shadow:2px 2px 0 #000}
+  .err{color:var(--red); font-weight:bold}
+  @media (min-width:700px){ .page{padding-top:24px} }
+  @media (prefers-reduced-motion:reduce){ .marquee span,.blink{animation:none} }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="marquee"><span>*** CONGRATULATIONS!!! YOU ARE VISITOR NUMBER 1,000,000 *** CLAIM YOUR FREE RAM NOW ***</span></div>
+
+  <div class="win raised">
+    <div class="title"><span>FREE_RAM.EXE - Internet Explorer</span><button class="x" id="homeX" aria-label="close">X</button></div>
+    <div class="body">
+      <div class="head">
+        <img src="logo.png" alt="Free RAM Downloader logo">
+        <div><div class="wordart">FREE RAM</div><div class="dl">DOWNLOADER</div><div class="ver">Version 9.9.9 ULTRA PRO (cracked)</div></div>
+      </div>
+      <div class="hazard"></div>
+
+      <div class="sunken" style="background:var(--cream)">
+        <div class="blink">WARNING!!! YOUR RAM IS LOW!!!</div>
+        <div class="row" style="margin-top:6px"><span>Installed RAM:</span><b style="color:var(--red)">4 GB</b></div>
+        <div class="bar" style="margin:6px 0" id="lowbar"></div>
+        <div class="row"><span>Recommended:</span><b style="color:var(--green)">999 GB</b></div>
+        <p style="margin:6px 0 2px;font-size:14px">Your device is SLOW because it does not have enough RAM. Download more RAM below. It is 100% FREE and takes only 3 seconds*.</p>
+        <i style="font-size:11px;color:var(--dk)">*3 seconds = approximately 3 days</i>
+      </div>
+
+      <div><h2>STEP 1: Choose your FREE RAM</h2><div id="packs" style="margin-top:6px"></div></div>
+
+      <div style="display:grid;gap:8px">
+        <h2>STEP 2: Click the button</h2>
+        <button class="btn big" id="dlBtn">&#8595; DOWNLOAD NOW!!!</button>
+        <button class="link" id="dlLink">Click here if your download does not start</button>
+        <button class="link" id="scanLink"><b>[ FREE virus scan - 7 viruses found on this page ]</b></button>
+      </div>
+
+      <div><small class="ad">Advertisement</small>
+        <div class="ads"><button class="btn lime ad-btn">DOWNLOAD</button><button class="btn yel ad-btn">START</button><button class="btn grn ad-btn">DOWNLOAD MORE CPU</button></div></div>
+
+      <div style="display:grid;gap:6px">
+        <h2><i>What our customers say:</i></h2>
+        <div class="sunken"><div class="q">"My phone now thinks it is a laptop. Thank you!!!"</div><div class="who"><span>- Karen, Ohio</span><span>*****</span></div></div>
+        <div class="sunken"><div class="q">"Downloaded 1 TB. Phone got heavier. 5 stars."</div><div class="who"><span>- Dave, Texas</span><span>*****</span></div></div>
+        <div class="sunken"><div class="q">"My doctor HATES this one weird trick."</div><div class="who"><span>- Linda, Florida</span><span>*****</span></div></div>
+      </div>
+
+      <div class="badges">
+        <div style="background:var(--green);color:#fff">100%<br>SAFE</div>
+        <div style="background:var(--navy);color:#fff">NO<br>VIRUS</div>
+        <div style="background:var(--red);color:var(--yellow)">AS SEEN<br>ON TV</div>
+        <div style="background:var(--yellow)">VERIFIED<br>LEGIT</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="hazard" style="width:100%"></div>
+    <div class="blink" style="font-size:14px">THIS PAGE IS UNDER CONSTRUCTION</div>
+    <div>You are visitor number</div>
+    <div class="count"><b>1</b><b>0</b><b>0</b><b>0</b><b>0</b><b>0</b><b>0</b></div>
+    <i style="font-size:12px">Best viewed in Netscape Navigator 4.0 at 800x600</i>
+    <div class="fine">(c) 1999-2003 FreeRAM Inc. All rights reserved.<br>THIS APP IS A JOKE. No RAM is downloaded. It is physically impossible.</div>
+  </div>
+</div>
+
+<div id="popups"></div>
+<div id="screen" class="overlay hide"><div class="inner"><div class="win raised" id="screenWin"></div></div></div>
+
+<script>
+const PACKS=[["8 GB","DDR4 - FREE"],["32 GB","DDR5 - FREE!!"],["128 GB","DDR6 - FREE!!!"],["1 TB","DDR7 ULTRA - FREE!!!!!"],["UNLIMITED","FREE* (*terms apply)"]];
+const POPS=[["Congratulations!!!","You are the 1,000,000th visitor! Click OK to claim your FREE RAM."],["System Alert","Your RAM is lonely. Download a friend for it."],["WAIT!","Are you sure you want to leave? Your free RAM expires in 00:59."],["Error","Error: Success. Please try again."],["Hot Singles","Hot single RAM sticks in your area want to meet you!"],["Warning","Your phone has 0 viruses. This is suspicious. Click OK to investigate."]];
+const $=s=>document.querySelector(s); let sel=1, timer=null;
+const bar=(v,n=22)=>'<div class="bar">'+Array.from({length:n},(_,i)=>`<i class="${i<v*n?'on':''}"></i>`).join('')+'</div>';
+$('#lowbar').outerHTML=bar(.01);
+function renderPacks(){ $('#packs').innerHTML=PACKS.map((p,i)=>`<button class="pack" data-i="${i}"><span class="box">${i===sel?'X':''}</span><b>${p[0]}</b><em>${p[1]}</em></button>`).join(''); document.querySelectorAll('.pack').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;renderPacks()}); }
+renderPacks();
+
+/* popups */
+function spawn(){ const w=$('#popups'); if(w.children.length>=4) return; const [t,m]=POPS[Math.floor(Math.random()*POPS.length)];
+  const el=document.createElement('div'); el.className='pop raised';
+  el.style.transform=`translate(calc(-50% + ${(Math.random()*80-40)|0}px), calc(-50% + ${(Math.random()*240-140)|0}px))`;
+  el.innerHTML=`<div class="title"><span>${t}</span><button class="x">X</button></div><div class="body" style="padding-top:6px"><div class="msg"><div class="bang">!</div><div>${m}</div></div><div class="btns"><button class="btn sans">OK</button><button class="btn sans">Cancel</button></div></div>`;
+  el.querySelectorAll('button').forEach(b=>b.onclick=()=>{el.remove(); if(Math.random()<.34) setTimeout(spawn,600)}); w.appendChild(el); }
+$('#homeX').onclick=spawn; document.querySelectorAll('.ad-btn').forEach(b=>b.onclick=spawn); setTimeout(spawn,3000);
+
+/* full-screen "windows" */
+function show(title,html){ $('#screenWin').innerHTML=`<div class="title"><span>${title}</span><button class="x" id="sx">X</button></div><div class="body">${html}</div>`; $('#screen').classList.remove('hide'); $('#sx').onclick=close; }
+function close(){ clearInterval(timer); $('#screen').classList.add('hide'); }
+
+function download(){
+  const pack=PACKS[sel][0]; let p=0, phase='dl', q=0, shared=0, ticks=0;
+  const stage=()=>p<.10?'Connecting to the RAM server...':p<.25?'Finding spare RAM on the internet...':p<.45?'Asking your neighbour for RAM...':p<.65?'Downloading RAM... (do not close this window)':p<.85?'Compressing RAM into a zip file...':p<.97?'Installing RAM driver v2.0 (cracked)...':'Almost done... any second now...';
+  const SURVEY=[["Are you a robot?",["Yes","No","Beep boop"]],["How many gigabytes are in a gigabyte?",["1","A lot","Yes"]],["Rate your free RAM experience",["5 stars","5 stars","5 stars"]]];
+  let speed='13.37', eta='3 days 4 hrs';
+  const draw=()=>{
+    if(phase==='dl'||phase==='stuck'){
+      show('Downloading RAM...',`<div class="mono" style="font-size:15px">free_ram_${pack.replace(/ /g,'_')}.zip</div><div>${stage()}</div>${bar(p)}
+      <div class="sunken mono"><div>Progress:  ${Math.floor(p*100)}%</div><div>Speed:     ${speed} KB/s</div><div>Time left: ${eta}</div></div>
+      ${phase==='stuck'?`<div class="blink">ERROR 0x00000RAM</div><div class="err">The RAM server is full. To continue, please complete 3 quick surveys.</div><button class="btn big" id="go">CONTINUE &gt;&gt;</button>`:`<button class="btn" style="width:90px" id="cancel">Cancel</button>`}`);
+      const g=$('#go'); if(g) g.onclick=()=>{phase='survey';draw()}; const c=$('#cancel'); if(c) c.onclick=()=>{ if(confirm('If you cancel now your free RAM will be LOST FOREVER.')) close() };
+    } else if(phase==='survey'){
+      const [qq,a]=SURVEY[q]; show('Downloading RAM...',`<i style="font-size:13px;color:var(--dk)">Quick survey ${q+1} of 3</i><h2 style="font-size:20px">${qq}</h2>${a.map(x=>`<button class="btn ans">${x}</button>`).join('')}<i style="font-size:11px;color:var(--dk)">Your answers are not recorded. Nothing is.</i>`);
+      document.querySelectorAll('.ans').forEach(b=>b.onclick=()=>{ if(++q>=3){phase='share'} draw() });
+    } else if(phase==='share'){
+      show('Downloading RAM...',`<div class="april" style="font-size:22px">Almost there!</div><div>Share with 20 friends to unlock your RAM.</div>${bar(shared/20)}<div class="mono" style="font-size:15px">Shared: ${shared}/20</div><i style="font-size:12px;color:var(--dk)">(we made up your friends for you)</i>`);
+    } else {
+      show('Downloading RAM...',`<div class="blink" style="font-size:22px;animation-name:blinkg">DOWNLOAD COMPLETE!!!</div>${bar(1)}
+      <div class="sunken mono" style="background:var(--cream);font-size:14px"><div>RAM added:    +0.00 GB</div><div>Total RAM:    unchanged</div><div>Viruses:      0</div></div><div class="hazard"></div>
+      <div class="april">APRIL FOOLS!</div><div style="font-size:15px">You cannot download RAM. This app is a joke and your phone is perfectly fine. Nothing was downloaded, collected or sent anywhere.</div>
+      <div style="display:flex;gap:8px"><button class="btn lime" id="more" style="flex:1;font-size:14px">Download MORE RAM</button><button class="btn" id="cl" style="width:70px;font-size:14px">Close</button></div>`);
+      $('#more').onclick=()=>{p=0;q=0;shared=0;phase='dl';draw()}; $('#cl').onclick=close;
+    }
+  };
+  draw(); clearInterval(timer);
+  timer=setInterval(()=>{ ticks++;
+    if(phase==='dl'){ p=Math.min(.99,p+.0005+Math.random()*.0055); if(ticks%8===0){speed=(Math.random()*99.4+.5).toFixed(2); eta=['3 days 4 hrs','17 hrs','1 year','47 min','NaN'][Math.random()*5|0]} if(p>=.99) phase='stuck'; draw(); }
+    else if(phase==='share'){ if(ticks%5===0&&shared<20) shared++; if(shared>=20) phase='done'; draw(); }
+  },60);
+}
+$('#dlBtn').onclick=download; $('#dlLink').onclick=download;
+
+function scan(){
+  const T=["Trojan.Horse.Of.Troy","Win32.Definitely.Not.Fake","Cookie.Monster.exe","Your.Ex.Texts.dll","Mom.Found.Your.Browser.History","Clippy.Wants.To.Talk","Totally.Real.Virus.vbs"];
+  const P=["C:\\WINDOWS\\SYSTEM32\\RAM.DLL","C:\\Program Files\\Totally Legit\\setup.exe","C:\\My Documents\\homework (2).doc","C:\\WINDOWS\\Temp\\~DF0A2B.tmp","C:\\Games\\Minesweeper\\mines.exe","C:\\WINDOWS\\Fonts\\comic.ttf"];
+  let p=0, done=false;
+  const draw=()=>{ const f=done?T.length:Math.min(T.length,Math.floor(p*(T.length+1)));
+    show('VirusScan 2003 - FREE',`<div class="mono" style="font-size:12px">${done?'Scan complete.':'Scanning: '+P[Math.floor(p*100)%P.length].replace(/&/g,'&amp;')}</div>${bar(p)}
+    <div class="sunken mono" style="min-height:150px">${f?T.slice(0,f).map(t=>`<div style="color:var(--red)">! ${t}</div>`).join(''):'<span style="color:var(--dk)">No threats found yet...</span>'}</div>
+    ${done?`<div class="blink" style="font-size:22px">${T.length} THREATS FOUND!!!</div><button class="btn lime big" id="rm" style="font-size:18px">REMOVE ALL (FREE!)</button>`:''}`);
+    const r=$('#rm'); if(r) r.onclick=()=>{ alert('Just kidding! Nothing was scanned. There are no viruses. Your phone is fine. Go touch grass.'); close() }; };
+  draw(); clearInterval(timer);
+  timer=setInterval(()=>{ if(done) return; p=Math.min(1,p+.006); if(p>=1) done=true; draw(); },50);
+}
+$('#scanLink').onclick=scan;
+</script>
+</body>
+</html>
